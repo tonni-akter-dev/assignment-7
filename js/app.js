@@ -5,24 +5,37 @@ const loadProducts = () => {
 
 // show all product in UI 
 const showProducts = (products) => {
-  const allProducts = products.map((pd) => pd);
-  for (const product of allProducts) {
+  for (const product of products) {
+    // rating start starts here
+    const { rate, count } = product.rating;
+    let icon = '';
+    for (let i = 1; i < rate; i++) {
+      icon += `<i class="fas fa-star text-warning"></i>`;
+    };
+    const rateStar = rate.toString().split('.')[1];
+    if (rateStar) icon += `<i class="fas fa-star-half-alt text-warning"></i>`;
+    if (rate < 5) {
+      for (let i = 1; i < 5-rate; i++) {
+     icon+=`<i class="far fa-star opacity-75"></i>`
+      }
+    }
+    icon += `<span>(${rate}) </span>`;
+    const starContainer = `<div>${icon}</div>`;
+    // rating start ends here
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `
     <div class="single-product">
       <div><img class="product-image" src=${product.image}></img></div>
-      <h3>${product.title}</h3>
+      <h6>${product.title}</h6>
       <p>Category: ${product.category}</p>
       <h4>Price: $ ${product.price}</h4>
-      
-      <div class="bonus-part">
-      <div>Rate ${product.rating.rate}</div>
-      <div>Count ${product.rating.count}</div>
-      </div>
+      <div class="rating-section">
+     <div>${starContainer}</div>
+     <div> ${count}</div>
+     </div>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-info">add to cart</button>
-      <button id="details-btn" class="btn btn-dark">Details</button></div>
-      `;
+      <button id="details-btn" class="btn btn-outline-dark">Details</button></div>`;
     document.getElementById("all-products").appendChild(div);
   }
 };
@@ -40,13 +53,12 @@ const getInputValue = (id) => {
   const converted = parseFloat(element);
   return converted;
 };
-
 // main price update function
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText =total.toFixed(2);
+  document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
@@ -79,3 +91,5 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 loadProducts();
+
+
