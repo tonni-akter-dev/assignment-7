@@ -22,7 +22,7 @@ body {
 }
 .search-button {
   padding: 10px 50px;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   margin-left: 20px;
 }
 #all-products {
@@ -42,7 +42,7 @@ body {
 .single-product:hover {
   box-shadow: 4px 4px 7px gray;
   border-radius: 10px;
-  border: 1px solid cyan;
+  /* border: 1px solid cyan; */
 }
 .product-image {
   width: 150px;
