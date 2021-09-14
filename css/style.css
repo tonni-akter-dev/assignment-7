@@ -13,11 +13,11 @@ body {
   margin: auto;
   align-items: center;
   justify-content: center;
-  align-items: flex-end
+  align-items: flex-end;
 }
 .single-product {
   transition: 0.6s;
-  background-color: rgba(211, 211, 211, 0.486);
+  background-color: rgba(146, 202, 212, 0.486);
   margin: 10px;
   height: 400px;
   padding: 10px;
